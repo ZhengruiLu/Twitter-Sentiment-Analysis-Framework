@@ -1,13 +1,13 @@
-# Twitter's Sentiment
+# Twitter's Sentiment Analysis
 Social networks are a fascinating domains for applying concepts from data science and visualization. Not only are they sources of **big** "big data" (about 500 million tweets are sent on Twitter each _day_), but their status as personal communities means that they often can provide profound insights into how people think, feel, and interact. For example, researchers have shown that the "mood" of Twitter communication [reflects biological rhythms](http://www.nytimes.com/2011/09/30/science/30twitter.html) and can even be used to [predict the stock market](http://arxiv.org/pdf/1010.3003&embedded=true).
 
-For this assignment, you will write a program to perform simple [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) of Twitter data---that is, determining the "attitude" of tweets (how "positive" or "negative") about a particular topic. You will apply this program to **real data** taken directly from Twitter, and use your analysis to consider basic questions about people's attitudes on social media.
+For this project, our team will write a program to perform simple [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) of Twitter data---that is, determining the "attitude" of tweets (how "positive" or "negative") about a particular topic. We will apply this program to **real data** taken directly from Twitter, and use your analysis to consider basic questions about people's attitudes on social media.
 
-- I want to emphasize that this assignment involves working with **real, unfiltered, unsanitized data** taken directly from the Twitter "firehose"--all public tweets made. _Tweets may include offensive, inappropriate, or triggering language or content._  As with the rest of the Internet, any given moment on Twitter can reveal both the peaks and valleys of human behavior. If you are concerned about this data or assignment in any way, please let us know.
+- This project involves working with **real, unfiltered, unsanitized data** taken directly from the Twitter "firehose"--all public tweets made. _Tweets may include offensive, inappropriate, or triggering language or content._  As with the rest of the Internet, any given moment on Twitter can reveal both the peaks and valleys of human behavior. If you are concerned about this data in any way, please let us know.
     
-
+_Based on assignments by John DeNero, Aditi Muralidharan, et al., and Bill Howe._ 
 ### Objectives
-By completing this challenge you will practice and master the following skills:
+By completing this challenge we will practice and master the following skills:
 
 * Working with Python data structures: lists, dictionaries, and tuples
 * Using Python loops and conditionals
@@ -36,7 +36,7 @@ Finally, the repo contains a script `twitter_stream.py` that you'll be able to u
 
 
 ## Part 1. Sentiment Analysis
-For the first part of this assignment, you will provide functions to analyze the sentiment of a short piece of text, like what would be found in a tweet. These functions will then be used to analyze the Twitter data in the next section.
+For the first part, it will provide functions to analyze the sentiment of a short piece of text, like what would be found in a tweet. These functions will then be used to analyze the Twitter data in the next section.
 
 * **IMPORTANT**: be very careful to name your functions ___exactly___ as specified in the spec, with the indicated parameters (in the indicated order!) The command-line interface is written to call those functions, and if they aren't correct your program will produce an error!
 
@@ -53,7 +53,7 @@ Implement a function **`extract_words()`** that takes in a string of text as its
 You can test this function with
 
 ```
-python3 tweet_sentiments.py extract_words "There're six words in this string."
+python tweet_sentiments_win.py extract_words ""There're 899324%8* &^&^& six words in      this string.""
 ```
 
 which should produce an output:
@@ -72,7 +72,7 @@ Implement a function **`load_sentiments()`** that takes in as a parameter the na
 You can test this function with
 
 ```
-python3 tweet_sentiments.py load_sentiments AFINN-111.csv 
+python tweet_sentiments_win.py load_sentiments AFINN-111.csv 
 ```
 
 which should produce an output that is a listing of the words following by their sentiments.
@@ -96,7 +96,7 @@ Implement a function **`text_sentiment()`** (singular) that takes in two paramet
 You can test this function with
 
 ```
-python3 tweet_sentiments.py sentiment -s AFINN-111.csv -t I prefer the rain to sunshine
+python tweet_sentiments_win.py sentiment -s AFINN-111.csv -t I prefer the rain to sunshine
 ```
 
 which should have a sentiment of `2.0` (using the AFINN scores).
@@ -139,7 +139,6 @@ Each tweet's data is encoded in `JSON` format, which is very close to a Python d
 You can test this function with
 
 ```
-python3 tweet_sentiments.py load_tweets data/dog.txt 
 python tweet_sentiments_win.py load_tweets data/dog.txt 
 ```
 
@@ -161,7 +160,6 @@ After you've loaded the data, it's time to analyze it! Implement a function **`p
 You can test this function with
 
 ```
-python3 tweet_sentiments.py popularity data/dog.txt
 python tweet_sentiments_win.py popularity data/dog.txt 
 ```
 
@@ -185,7 +183,6 @@ Implement a function called **`hashtag_counts()`** that takes in the name of a f
 You can test this function with
 
 ```
-python3 tweet_sentiments.py hashtag_counts data/dog.txt 
 python tweet_sentiments_win.py hashtag_counts data/dog.txt 
 ```
 
@@ -212,7 +209,6 @@ Implement a function **`tweet_sentiments()`** (plural) that takes in two paramet
 You can test this function with
 
 ```
-python3 tweet_sentiments.py sentiment -f data/dog.txt -s AFINN-111.csv
 python tweet_sentiments_win.py sentiment -f data/dog.txt -s AFINN-111.csv
 ```
 
@@ -240,7 +236,7 @@ In addition, your function should take an [optional](http://www.diveintopython.n
 You can test this function (with the optional query) with
 
 ```
-python3 tweet_sentiments.py hashtag -f data/dog.txt -s AFINN-111.csv -q dog
+python tweet_sentiments_win.py hashtag -f data/dog.txt -s AFINN-111.csv -q dog
 ```
 
 which should produce a filtered set of hashtags:
@@ -280,7 +276,7 @@ The math for calculating a Pearson's coefficient is not terribly complicated, bu
 You can test this function with
 
 ```
-python3 tweet_sentiments.py correlation -f data/dog.txt -s AFINN-111.csv
+python tweet_sentiments_win.py correlation -f data/dog.txt -s AFINN-111.csv
 ```
 
 which should print the correlation for you:
@@ -316,7 +312,7 @@ In order to download some Twitter data on your own, use the following steps:
 8. Run the program:
 
     ```
-    python3 twitter_stream.py     
+    python twitter_stream.py     
     ```
     You can redirect `>` the output to a file in order to save the results.
 
@@ -342,20 +338,5 @@ To "turn in" your work from this section, you should do the following:
 
 ## Submit Your Solution
 Remember to `add`, `commit`, and `push` your script once it's finished!
-
-In order to submit you assignment, you  need to both `push` your completed solution to your GitHub repository (the one in the cloud that you created by forking), **and** submit a link to your repository to [Canvas](https://canvas.uw.edu/) (so that we know where to find your work)!
-
-Before you submit your assignment, double-check the following:
-
-1. Confirm that your program is completed and works without errors. All of the commands included should be able to run without errors, producing the expected output. 
-* Be sure and fill out the **`SUBMISSION.md`** included in the assignment directory, answering the questions.
-* `commit` the final version of your work, and `push` your code to your GitHub repository.
-
-Submit a a link to your GitHub repository via [this canvas page](https://canvas.uw.edu/courses/1041440/assignments/3208930).
-
-The assignment is due on **Fri Apr 29 at 5:00 PM**.
-
-### Grading Rubric
-See the assignment page on Canvas for the grading rubric.
 
 _Based on assignments by John DeNero, Aditi Muralidharan, et al., and Bill Howe._ 
