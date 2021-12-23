@@ -28,7 +28,6 @@ def load_sentiments(csvFile):
 def text_sentiment(text, sentimentDic):
   # use 1A to divide string into words
   # use 1B's dict to get value(score) of every word; 
-  # if the key not in dict, the score is 0
   # sum all the scores
   wordsList = extract_words(text)
 
@@ -36,8 +35,8 @@ def text_sentiment(text, sentimentDic):
 
   for word in wordsList:
     if word in sentimentDic:
-        # dict.get(key, default=None) 返回指定键的值，如果值不在字典中返回default值
-        sumScores = sumScores + sentimentDic.get(word) #, default = 0
+
+        sumScores = sumScores + sentimentDic.get(word) 
 
   return sumScores
 
@@ -52,7 +51,7 @@ def load_tweets(fileName):
     lines = txtData.readlines()
     for line in lines:
       line_dict = json.loads(line)
-      # 是否需要 复制字典的一部分(键和值)，指定键和值
+
       new_dict = {key: line_dict[key] for key in ['created_at', 'text', 'retweet_count', 'favorite_count']}
 
       new_dict['text'] = new_dict['text'].lower()
@@ -64,8 +63,8 @@ def load_tweets(fileName):
           new_dict['entities.hashtags[i].text'].append(hashtagDict.get('text'))
 
       resultList.append(new_dict)
-
-  return resultList  
+ 
+  return resultList
 
 # 2B
 def popularity(fileName):
@@ -96,7 +95,6 @@ def popularity(fileName):
 def hashtag_counts(fileName):
   fileList = load_tweets(fileName)
   resDict = {}
-  # countSum = 0
 
 # find hashtag as key, count times as value, sort by value
   for tweetDict in fileList:
@@ -110,11 +108,6 @@ def hashtag_counts(fileName):
           resDict[hashtag] = resDict[hashtag] + 1
         else:
           resDict[hashtag] = 1
-
-        # countSum = countSum + hashtagsList.count(hashtag)
-        # resDict[hashtag] = countSum
-        
-        # resDict[newHashTagName] = resDict.pop(hashtag)
 
 # transfer dict into tuple
   resTupleList = sorted(resDict.items(), key = lambda x : x[1], reverse = True)
@@ -136,6 +129,87 @@ def tweet_sentiments(tweetDataFileName, SentimentDataFileName):
     tweetDict['sentiment'] = text_sentiment(tweetDict['text'], sentimentDict)
 
   return tweetsList  
+
+# 3B
+# takes as parameters the name of a tweet data file and the name of a sentiment data file
+# return_ a `list` of tuples, where each tuple contains (in order) a hashtag in the data set 
+# and the sentiment of that hashtag, defined as: _the **average** sentiment of the tweets that contain that hashtag_.
+# This list itself should be **ordered** by the sentiment, so that most positive hashtags are at the top.
+
+# Try to keep track of both the accumulated score and the number of tweets in a single loop
+def hashtag_sentiments(tweetDataFileName, SentimentDataFileName, query):
+
+  # hashtag_counts(): returns_ a `list` of tuples, where each tuple contains a hashtag in the data set and the number of times that hashtag was used (in that order)
+  # sentiment: the **average** sentiment of the tweets that contain that hashtag_
+  # Try to keep track of both the accumulated score and the number of tweets in a single loop
+  # if this text contains the target hashtag, sum += tweet's sentiment, cnt += 1
+  # average sentiments = sum / count
+
+  tweetsList = tweet_sentiments(tweetDataFileName, SentimentDataFileName)
+  hashtagFrequencyDict = {}
+  totalSentimentDict = {}
+  resDict = {}
+  resQueryDict = {}
+
+# find hashtag as key, count times as value, sort by value
+  for tweetDict in tweetsList:
+    # get hashtags
+    hashtagsList = tweetDict.get('entities.hashtags[i].text')
+    hashtagsSet = set(hashtagsList)
+
+    #calculate the hashtag's frequency
+    for hashtag in hashtagsSet:
+        hashtag = '#' + hashtag
+
+        if hashtag in hashtagFrequencyDict:
+          hashtagFrequencyDict[hashtag] = hashtagFrequencyDict[hashtag] + 1
+          totalSentimentDict[hashtag] = totalSentimentDict[hashtag] + tweetDict.get('sentiment')
+        else:
+          hashtagFrequencyDict[hashtag] = 1
+          totalSentimentDict[hashtag] = tweetDict.get('sentiment')
+
+  # third parameter called **`query`**, representing a "search term".
+  # If the function is called with this parameter, then the returned list should _only_ contain hashtags that have the parameter's value _`in`_ them
+  # e.g., if the query is `dog` then `dog` and `doggy` would both be returned
+  for hashtag in totalSentimentDict:
+    if re.findall(query, hashtag.lower()):
+        resDict[hashtag] = totalSentimentDict[hashtag] / hashtagFrequencyDict[hashtag]
+        
+  # transfer dict into tuple list
+  resTupleList = sorted(resDict.items(), key = lambda x : x[1], reverse = True)
+
+  return resTupleList  
+
+
+# 3C. Popular Sentiment
+
+# return_ the **correlation** between 
+# the sentiment of a tweet and 
+# the number of times that tweet was retweeted.
+
+import numpy as np
+
+def popular_sentiment(tweetDataFileName, SentimentDataFileName) :
+  tweetsList = tweet_sentiments(tweetDataFileName, SentimentDataFileName)
+
+  sentimentList = []
+  retweetedNumList = []
+  # x - get every sentiment number, and save into list
+  # y - get every retweets number, and save into list
+  for tweetDict in tweetsList:
+    sentimentList.append(tweetDict.get('sentiment'))
+    retweetedNumList.append(tweetDict.get('retweet_count'))
+  
+  # corrcoef(x, y)
+  x = np.array(sentimentList)
+  y = np.array(retweetedNumList)
+
+  return np.corrcoef(x, y)
+
+# result:
+# Correlation between popularity and sentiment: r=[[ 1.         -0.04218625]
+# [-0.04218625  1.        ]]
+
 ####################################
 ## DO NOT EDIT BELOW THIS POINT!! ##
 ## #################################
