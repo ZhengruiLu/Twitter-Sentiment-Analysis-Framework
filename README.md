@@ -6,10 +6,10 @@ For this project, our team will write a program to perform simple [sentiment ana
 - This project involves working with **real, unfiltered, unsanitized data** taken directly from the Twitter "firehose"--all public tweets made. _Tweets may include offensive, inappropriate, or triggering language or content._  As with the rest of the Internet, any given moment on Twitter can reveal both the peaks and valleys of human behavior. If you are concerned about this data in any way, please let us know.
 
 - Project Focus
-1. Working with Python: a. data structures: lists, dictionaries, and tuples; b. using Python loops and conditionals;
+1. Working with **Python**: a. data structures: lists, dictionaries, and tuples; b. using Python loops and conditionals;
 2. Defining re-usable functions that take in parameters and return data;
 3. Programmatically processing, filtering, and organizing textual data;
-4. Interacting with Twitter API;
-5. Analyzing, interpreting, and visualizing data with SciPy, Pandas, Bokeh, Matplotlib and Numpy.
+4. Interacting with **Twitter API**;
+5. Analyzing, interpreting, and visualizing data with **SciPy, Pandas, Bokeh**, and **Numpy**.
     
 _Based on assignments by John DeNero, Aditi Muralidharan, et al., and Bill Howe._
