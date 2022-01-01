@@ -19,9 +19,9 @@ The following **functionality** is completed:
 
 ## Visualization Sample
 
-Here's a sample of implemented project stories:
+Here's a sample of implemented project stories: 
 
-<img src='visualization _sample_bokeh_plot_meals.jpg' title='Visualization Sample' width='600' height='600' alt='Visualization Sample' />
+<img src='visualization _sample_bokeh_plot_meals.jpg' title='Visualization Sample' width='520' height='520' alt='Visualization Sample' />
 
 ## Notes
 
@@ -41,7 +41,6 @@ This project involves working with **real, unfiltered, unsanitized data** taken 
     entirely in alphabetic ordering.  
 
     An evaluation of the word list is available in:
-
 
     The list was used in: 
 
