@@ -21,7 +21,7 @@ The following **functionality** is completed:
 
 Here's a sample of implemented project stories:
 
-<img src='visualization _sample_bokeh_plot_meals.jpg' title='Visualization Sample' width='' alt='Visualization Sample' />
+<img src='visualization _sample_bokeh_plot_meals.jpg' title='Visualization Sample' width='600' height='600' alt='Visualization Sample' />
 
 ## Notes
 
