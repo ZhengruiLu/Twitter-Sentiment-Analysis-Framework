@@ -6,7 +6,7 @@ Submitted by: **Zhengrui Lu, Xinyi Wu**
 
 Time spent: **30** hours spent in total
 
-## Project Stories
+## User Stories
 
 The following **functionality** is completed:
 
