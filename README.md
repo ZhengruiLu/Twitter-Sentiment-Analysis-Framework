@@ -1,6 +1,6 @@
 # Project - *Twitter_Sentiment_Analysis* 
 
-**Twitter_Sentiment_Analysis** is a program which performs simple [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) of Twitter data---that is, determining the "attitude" of tweets (how "positive" or "negative") about a particular topic. We will apply this program to **real data** taken directly from Twitter, and use your analysis to consider basic questions about people's attitudes on social media.
+**Twitter_Sentiment_Analysis** is a program which performs simple [sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) of Twitter data---that is, determining the "attitude" of tweets (how "positive" or "negative") about a particular topic. We will apply this program to **real data** taken directly from Twitter, and use our analysis to consider basic questions about people's attitudes on social media.
 
 Submitted by: **Zhengrui Lu, Xinyi Wu**
 
