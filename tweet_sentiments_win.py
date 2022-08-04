@@ -1,5 +1,7 @@
 # Your functions go here!
-# 1A
+
+# Part 1: Connecting Texts and Sentiment Dictionary
+# 1A - Parsing the Raw Tweets Texts
 import re
 
 def extract_words(text):
@@ -10,7 +12,7 @@ def extract_words(text):
 # test = "There're 899324%8* &^&^& six words in      this string."
 # extract_words(test)
 
-# 1B
+# 1B - Using an Objective Sentiment Dictionary
 import csv
 
 def load_sentiments(csvFile):
@@ -24,7 +26,7 @@ def load_sentiments(csvFile):
 
   return result
 
-# 1C
+# 1C - Get the Sentiment Score of a "Clean" Sentence
 def text_sentiment(text, sentimentDic):
   # use 1A to divide string into words
   # use 1B's dict to get value(score) of every word; 
@@ -40,7 +42,13 @@ def text_sentiment(text, sentimentDic):
 
   return sumScores
 
-# 2A
+# Part 2: Sorting Twitter JSON Files
+'''
+# Preparation - The "data" folder contains .txt files we downloaded for further analysis using "twitter_stream.py" and Twitter API from the terminal.
+# The filenames also contain our search terms when requesting those tweets, e.g.: "dog", "cat", and "work".
+# We've taken out our own ACCESS_TOKEN_KEY following Twitter's security protocols.
+'''
+# 2A - Tidy up the Twitter Data from the JSON String.
 import json 
 
 def load_tweets(fileName):
@@ -66,7 +74,7 @@ def load_tweets(fileName):
  
   return resultList
 
-# 2B
+# 2B - Calculate Total Popularity from the JSON File
 def popularity(fileName):
   filelist = load_tweets(fileName)
 
@@ -114,7 +122,8 @@ def hashtag_counts(fileName):
 
   return resTupleList
 
-# 3A
+# Part 3 - Working with Both Tweets and Sentiments
+# 3A - What is the sentiment score for each tweet?
 def tweet_sentiments(tweetDataFileName, SentimentDataFileName):
   # return_ a list of tweet objects
   # each tweet object should have an additional field ('sentiment')
@@ -130,7 +139,7 @@ def tweet_sentiments(tweetDataFileName, SentimentDataFileName):
 
   return tweetsList  
 
-# 3B
+# 3B - What's the average sentiment scores for a specific hashtag in the JSON File?
 # takes as parameters the name of a tweet data file and the name of a sentiment data file
 # return_ a `list` of tuples, where each tuple contains (in order) a hashtag in the data set 
 # and the sentiment of that hashtag, defined as: _the **average** sentiment of the tweets that contain that hashtag_.
@@ -181,11 +190,11 @@ def hashtag_sentiments(tweetDataFileName, SentimentDataFileName, query):
   return resTupleList  
 
 
-# 3C. Popular Sentiment
+# 3C - Is it true that positive tweets will get more retweets?
+# Calculating the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)
 
-# return_ the **correlation** between 
-# the sentiment of a tweet and 
-# the number of times that tweet was retweeted.
+# Return the overall sentiment score of a tweets file, and correlation between the sentiment of a tweet, and the number of times that tweet was retweeted.
+# The correlation is calculated using a Pearson's coefficient.
 
 import numpy as np
 
